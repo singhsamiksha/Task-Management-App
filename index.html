@@ -7,9 +7,40 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
+    <div id="overlay"></div> 
+    
     <header>
-        <input type="text" placeholder="Search" id="search"></input>
+        <input type="text" placeholder="Search" id="search">
         <button id="addbutton">Create Task</button>
+        <div id="add">
+            <form id="taskForm">
+                <label for="title">Title</label>
+                <input type="text" id="title" required>
+        
+                <label for="description">Description</label>
+                <input type="text" id="description" style="height:100px" required>
+        
+                <label for="priority">Priority</label>
+                <select id="priority" required>
+                    <option value="high">High</option>
+                    <option value="medium">Medium</option>
+                    <option value="low">Low</option>
+                </select>
+        
+                <button type="submit">Create</button>
+            </form>
+        </div>
     </header>
+    
+    <div class="task">
+        <div class="todo">
+            <!-- Tasks will be listed here -->
+        </div>
+        <div class="complete">
+            <!-- Completed tasks -->
+        </div>
+    </div>
+
+    <script src="script.js"></script>
 </body>
 </html>
