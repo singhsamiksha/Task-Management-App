@@ -112,4 +112,11 @@ function handleOperations(markButton, editButton, deleteButton) {
             taskArr.splice(taskIndex, 1);
         }
     });
+
+
+    editButton.addEventListener('click',(event)=>{
+        event.preventDefault;
+        overlay.style.display = 'block';
+        addForm.style.display = 'block';
+    })
 }
