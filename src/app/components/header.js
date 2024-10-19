@@ -1,10 +1,9 @@
 import React from 'react';
-import { AppBar, Toolbar, Typography, Button, IconButton, Grid2 as Grid, Box, Grid2, InputAdornment, useTheme } from '@mui/material';
+import { AppBar, Toolbar, Typography, Button, IconButton, Grid2 as Grid, Box, Grid2, InputAdornment, useTheme, TextField } from '@mui/material';
 
 import LightModeIcon from '@mui/icons-material/LightMode';
 import DarkModeIcon from '@mui/icons-material/DarkMode';
 import { Search as SearchIcon } from '@mui/icons-material';
-import TextField from './formInput/TextField';
 
 const Header = (props) => {
   const {
