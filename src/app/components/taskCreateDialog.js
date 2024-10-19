@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Button, Dialog, DialogTitle, DialogContent, Typography, MenuItem, DialogActions, useTheme, IconButton, TextField, Select } from '@mui/material';
 import { Close as CloseIcon } from '@mui/icons-material';
 import { TASK_PRIORITY } from '../constants';
@@ -8,21 +8,33 @@ const TaskCreateDialog = (props) => {
   const {
     open,
     handleClose,
+    task,
+    createTask,
+    updateTask,
   } = props;
 
   const initialTask = { title: '', description: '', priority: TASK_PRIORITY.LOW };
   const [newTask, setNewTask] = useState({ ...initialTask });
 
-  const { createTask } = useTaskManager();
-
   const closeDialog = () => {
     setNewTask({ ...initialTask });
     handleClose();
-  }
+  };
 
-  const handleAddTask = () => {
-    createTask(newTask);
-    setNewTask({ ...initialTask });
+  useEffect(() => {
+    if (task) {
+      setNewTask(task);
+    } else {
+      setNewTask({ ...initialTask });
+    }
+  }, [task, open]);
+
+  const handleSubmit = () => {
+    if (task) {
+      updateTask(task.id, newTask); 
+    } else {
+      createTask(newTask);
+    }
     closeDialog();
   };
 
@@ -34,7 +46,7 @@ const TaskCreateDialog = (props) => {
       maxWidth={'sm'}
     >
       <DialogTitle>
-        <Typography variant="h6">Add New Task</Typography>
+        <Typography variant="h6">{task ? 'Update Task' : 'Add New Task'}</Typography>
         <IconButton
           aria-label="close"
           onClick={closeDialog}
@@ -47,13 +59,10 @@ const TaskCreateDialog = (props) => {
         >
           <CloseIcon />
         </IconButton>
-
       </DialogTitle>
       <DialogContent>
         {/* Task Title */}
-        <Typography variant="subtitle2">
-          Task Title
-        </Typography>
+        <Typography variant="subtitle2">Task Title</Typography>
         <TextField
           fullWidth
           margin="dense"
@@ -96,9 +105,16 @@ const TaskCreateDialog = (props) => {
       </DialogContent>
       <DialogActions>
         <Button onClick={closeDialog}>Cancel</Button>
-        <Button onClick={handleAddTask} variant="contained" color="primary">Add Task</Button>
+        <Button
+          disabled={!newTask.title || !newTask.description}
+          onClick={handleSubmit}
+          variant="contained"
+          color="primary"
+        >
+          {task ? 'Update Task' : 'Add Task'}
+        </Button>
       </DialogActions>
-    </Dialog >
+    </Dialog>
   );
 };
 

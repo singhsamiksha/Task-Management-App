@@ -5,19 +5,14 @@ import Header from './components/header';
 import { ThemeContext } from './layout';
 import TaskCreateDialog from './components/taskCreateDialog';
 import TaskList from './components/tasksList';
+import useTaskManager from './hooks/tasks';
 
 export default function Home() {
 
   const { darkMode, toggleTheme } = useContext(ThemeContext);
-
-  const initialTasks = [
-    { id: 1, title: "Task 1", description: "High priority task", priority: "high", completed: false },
-    { id: 2, title: "Task 2", description: "Medium priority task", priority: "medium", completed: false },
-    { id: 3, title: "Task 3", description: "Low priority task", priority: "low", completed: false },
-  ];
-
-
+  const [searchValue, setSearchValue] = useState();
   const [taskCreateDialogOpen, setTaskCreateDialogOpen] = useState(false);
+  const { tasks, createTask, updateTask, deleteTask } = useTaskManager();
 
   return (
     <div>
@@ -25,13 +20,20 @@ export default function Home() {
         toggleTheme={toggleTheme}
         darkMode={darkMode}
         setTaskCreateDialogOpen={setTaskCreateDialogOpen}
+        searchValue={searchValue}
+        setSearchValue={setSearchValue}
       />
       <TaskCreateDialog
         open={taskCreateDialogOpen}
+        createTask={createTask}
         handleClose={() => setTaskCreateDialogOpen(false)}
       />
-
-      <TaskList />
+      <TaskList
+        tasks={tasks}
+        updateTask={updateTask}
+        deleteTask={deleteTask}
+        searchValue={searchValue}
+      />
     </div>
   );
 }

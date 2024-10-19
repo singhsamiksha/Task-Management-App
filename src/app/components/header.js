@@ -10,6 +10,8 @@ const Header = (props) => {
     toggleTheme,
     darkMode,
     setTaskCreateDialogOpen,
+    searchValue,
+    setSearchValue,
   } = props;
 
   const theme = useTheme();
@@ -43,7 +45,9 @@ const Header = (props) => {
                 </InputAdornment>
               },
             }}
-          />
+            value={searchValue}
+            onChange={(e) => setSearchValue(e.target.value)}
+            />
           <Box>
             <IconButton onClick={toggleTheme} color="inherit" sx={{ mr: 2 }}>
               {darkMode ? <DarkModeIcon /> : <LightModeIcon />}

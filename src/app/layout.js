@@ -2,7 +2,7 @@
 
 import { ThemeProvider, createTheme } from '@mui/material/styles';
 import CssBaseline from '@mui/material/CssBaseline';
-import { createContext, useMemo, useState } from 'react';
+import { createContext, useEffect, useMemo, useState } from 'react';
 import { Roboto } from 'next/font/google';
 
 const roboto = Roboto({
@@ -17,10 +17,20 @@ export const ThemeContext = createContext();
 
 export default function RootLayout({ children }) {
 
-  const [darkMode, setDarkMode] = useState(false); // default is light theme
+  const [darkMode, setDarkMode] = useState(false);
+
+  useEffect(() => {
+    const darkModeSavedValue = localStorage.getItem('darkMode');
+    if(darkModeSavedValue === 'true') {
+      setDarkMode(true);
+    }
+  }, []);
 
   const toggleTheme = () => {
-    setDarkMode((prevValue) => !prevValue);
+    setDarkMode((prevValue) => {
+      localStorage.setItem('darkMode', !prevValue);
+      return !prevValue;
+    });
   };
 
   const lightTheme = useMemo(
