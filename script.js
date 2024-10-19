@@ -4,6 +4,8 @@ const overlay = document.getElementById('overlay');
 const taskForm = document.getElementById('taskForm');
 const taskArr = [];
 
+
+
 addButton.addEventListener('click', () => {
     overlay.style.display = 'block';
     addForm.style.display = 'block';
@@ -58,8 +60,13 @@ taskForm.addEventListener('submit', (event) => {
     content.append(taskTitle, taskPriority);
     task.append( content, taskDate, taskDescription, sideButtons);
 
-    document.getElementById('todo').append(task, document.createElement('hr'));
+    const line = document.createElement('hr');
+    line.classList.add('line');
+
+    document.getElementById('todo').append(task, line);
     taskArr.push(task);
+
+    handleOperations(markButton,editButton,deleteButton);
 
     overlay.style.display = 'none';
     addForm.style.display = 'none';
@@ -70,3 +77,39 @@ overlay.addEventListener('click', () => {
     overlay.style.display = 'none';
     addForm.style.display = 'none';
 });
+
+function handleOperations(markButton, editButton, deleteButton) {
+    markButton.addEventListener('click', (event) => {
+        event.preventDefault();
+
+        markButton.textContent = 'Completed';
+        markButton.style.backgroundColor = 'lightgreen';
+        markButton.disabled = true;
+        editButton.remove();
+
+        const taskContainer = markButton.closest('.taskContainer');
+        const taskIndex = taskArr.indexOf(taskContainer);
+        if (taskIndex > -1) {
+            taskArr.splice(taskIndex, 1);
+            CompletedArr.push(taskContainer);
+            completedContainer.append(taskContainer);
+        }
+    });
+
+    deleteButton.addEventListener('click', (event) => {
+        event.preventDefault();
+
+        const taskContainer = deleteButton.closest('.taskContainer');
+        const line = taskContainer.nextElementSibling; 
+        if (line && line.tagName === 'HR') {
+            line.remove();  
+        }
+
+        taskContainer.remove();  
+
+        const taskIndex = taskArr.indexOf(taskContainer);
+        if (taskIndex > -1) {
+            taskArr.splice(taskIndex, 1);
+        }
+    });
+}
