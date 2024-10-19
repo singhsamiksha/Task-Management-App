@@ -1,25 +1,35 @@
 import React, { useState } from 'react';
 import { Button, Dialog, DialogTitle, DialogContent, Typography, MenuItem, DialogActions, useTheme, IconButton, TextField, Select } from '@mui/material';
 import { Close as CloseIcon } from '@mui/icons-material';
+import { TASK_PRIORITY } from '../constants';
+import useTaskManager from '../hooks/tasks';
 
 const TaskCreateDialog = (props) => {
   const {
     open,
     handleClose,
   } = props;
-  const [newTask, setNewTask] = useState({ title: '', description: '', priority: 'low' });
 
-  const theme = useTheme();
+  const initialTask = { title: '', description: '', priority: TASK_PRIORITY.LOW };
+  const [newTask, setNewTask] = useState({ ...initialTask });
 
-  // Handler to add a task
-  const handleAddTask = () => {
+  const { createTask } = useTaskManager();
+
+  const closeDialog = () => {
+    setNewTask({ ...initialTask });
     handleClose();
+  }
+
+  const handleAddTask = () => {
+    createTask(newTask);
+    setNewTask({ ...initialTask });
+    closeDialog();
   };
 
   return (
     <Dialog
       open={open}
-      onClose={handleClose}
+      onClose={closeDialog}
       fullWidth={true}
       maxWidth={'sm'}
     >
@@ -27,7 +37,7 @@ const TaskCreateDialog = (props) => {
         <Typography variant="h6">Add New Task</Typography>
         <IconButton
           aria-label="close"
-          onClick={handleClose}
+          onClick={closeDialog}
           sx={{
             position: 'absolute',
             right: 8,
@@ -79,13 +89,13 @@ const TaskCreateDialog = (props) => {
           size='small'
           margin="dense"
         >
-          <MenuItem value="high">High</MenuItem>
-          <MenuItem value="medium">Medium</MenuItem>
-          <MenuItem value="low">Low</MenuItem>
+          <MenuItem value={TASK_PRIORITY.HIGH}>High</MenuItem>
+          <MenuItem value={TASK_PRIORITY.MEDIUM}>Medium</MenuItem>
+          <MenuItem value={TASK_PRIORITY.LOW}>Low</MenuItem>
         </Select>
       </DialogContent>
       <DialogActions>
-        <Button onClick={handleClose}>Cancel</Button>
+        <Button onClick={closeDialog}>Cancel</Button>
         <Button onClick={handleAddTask} variant="contained" color="primary">Add Task</Button>
       </DialogActions>
     </Dialog >

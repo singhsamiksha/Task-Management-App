@@ -4,6 +4,7 @@ import { useContext, useState } from 'react';
 import Header from './components/header';
 import { ThemeContext } from './layout';
 import TaskCreateDialog from './components/taskCreateDialog';
+import TaskList from './components/tasksList';
 
 export default function Home() {
 
@@ -14,6 +15,7 @@ export default function Home() {
     { id: 2, title: "Task 2", description: "Medium priority task", priority: "medium", completed: false },
     { id: 3, title: "Task 3", description: "Low priority task", priority: "low", completed: false },
   ];
+
 
   const [taskCreateDialogOpen, setTaskCreateDialogOpen] = useState(false);
 
@@ -28,6 +30,8 @@ export default function Home() {
         open={taskCreateDialogOpen}
         handleClose={() => setTaskCreateDialogOpen(false)}
       />
+
+      <TaskList />
     </div>
   );
 }
