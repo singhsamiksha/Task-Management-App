@@ -1,5 +1,5 @@
 import React from 'react';
-import { AppBar, Toolbar, Typography, Button, IconButton, Grid2 as Grid, Box, Grid2, InputAdornment, useTheme, TextField } from '@mui/material';
+import { AppBar, Toolbar, Typography, Button, IconButton, Box, Grid2, InputAdornment, useTheme, TextField } from '@mui/material';
 
 import LightModeIcon from '@mui/icons-material/LightMode';
 import DarkModeIcon from '@mui/icons-material/DarkMode';
@@ -17,30 +17,30 @@ const Header = (props) => {
   const theme = useTheme();
 
   return (
-    <AppBar position="static" color="inherit" elevation={1}>
+    <AppBar position='static' color='inherit' elevation={1}>
       <Toolbar>
         <Grid2
           container
-          alignItems="center"
+          alignItems='center'
           justifyContent={'space-between'}
           sx={{
             width: '100%',
           }}
         >
-          <Typography variant="h6">
+          <Typography variant='h6'>
             Task Management App
           </Typography>
           <TextField
-            variant="outlined"
-            placeholder="Search tasks..."
-            size="small"
+            variant='outlined'
+            placeholder='Search tasks...'
+            size='small'
             sx={{
               width: '50%',
               background: theme.palette.background.default,
             }}
             slotProps={{
               input: {
-                startAdornment: <InputAdornment position="start">
+                startAdornment: <InputAdornment position='start'>
                   <SearchIcon />
                 </InputAdornment>
               },
@@ -49,12 +49,12 @@ const Header = (props) => {
             onChange={(e) => setSearchValue(e.target.value)}
             />
           <Box>
-            <IconButton onClick={toggleTheme} color="inherit" sx={{ mr: 2 }}>
+            <IconButton onClick={toggleTheme} color='inherit' sx={{ mr: 2 }}>
               {darkMode ? <DarkModeIcon /> : <LightModeIcon />}
             </IconButton>
             <Button
-              variant="contained"
-              color="primary"
+              variant='contained'
+              color='primary'
               style={{ marginRight: '10px' }}
               onClick={setTaskCreateDialogOpen}
             >

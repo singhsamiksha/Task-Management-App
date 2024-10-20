@@ -1,4 +1,4 @@
-"use client";
+'use client';
 
 import { useContext, useState } from 'react';
 import Header from './components/header';
@@ -7,6 +7,7 @@ import TaskCreateDialog from './components/taskCreateDialog';
 import TaskList from './components/tasksList';
 import useTaskManager from './hooks/tasks';
 
+// eslint-disable-next-line import/no-unused-modules
 export default function Home() {
 
   const { darkMode, toggleTheme } = useContext(ThemeContext);

@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Paper, Card, CardContent, CardActions, Button, Typography, useTheme, Grid2, useScrollTrigger, Box, Tooltip } from '@mui/material';
+import { Paper, Card, CardContent, CardActions, Button, Typography, useTheme, Grid2, Box, Tooltip } from '@mui/material';
 import DeleteIcon from '@mui/icons-material/Delete';
 import CheckCircleIcon from '@mui/icons-material/CheckCircle';
 import EditIcon from '@mui/icons-material/Edit';
@@ -7,8 +7,8 @@ import { TASK_PRIORITY, TASK_STATUS } from '../constants';
 import TaskCreateDialog from './taskCreateDialog';
 
 const LIST_TYPE = {
-    PENDING: "PENDING",
-    COMPLETED: "COMPLETED",
+    PENDING: 'PENDING',
+    COMPLETED: 'COMPLETED',
 }
 
 const TaskTypeList = (props) => {
@@ -47,7 +47,7 @@ const TaskTypeList = (props) => {
 
     return (<Grid2 size={{ xs: 12, md: 6 }} sx={{ padding: 4, paddingRight: 2 }}>
         <Paper elevation={0} sx={{ height: '100%', padding: 2, backgroundColor: theme.palette.background.default }}>
-            <Typography variant="h6" fontWeight="bold" sx={{ mb: 2 }}>
+            <Typography variant='h6' fontWeight='bold' sx={{ mb: 2 }}>
                 {listType === LIST_TYPE.PENDING ? 'Pending Tasks' : 'Completed Tasks'}
             </Typography>
             <Grid2 container spacing={2}>
@@ -72,8 +72,8 @@ const TaskTypeList = (props) => {
                                         }}
                                     >
                                         <Box>
-                                            <Typography variant="h6">{task.title}</Typography>
-                                            <Typography variant="body2" color="text.secondary">
+                                            <Typography variant='h6'>{task.title}</Typography>
+                                            <Typography variant='body2' color='text.secondary'>
                                                 Created At: {new Date(task.createdAt).toLocaleString()}
                                             </Typography>
                                         </Box>
@@ -89,10 +89,10 @@ const TaskTypeList = (props) => {
                                             />
                                         </Tooltip>
                                     </Box>
-                                    <Typography variant="subtitle2" color="text.secondary" sx={{ mt: 1 }}>
+                                    <Typography variant='subtitle2' color='text.secondary' sx={{ mt: 1 }}>
                                         Description
                                     </Typography>
-                                    <Typography variant="body2" color="text.secondary">
+                                    <Typography variant='body2' color='text.secondary'>
                                         {task.description}
                                     </Typography>
                                 </CardContent>
@@ -100,8 +100,8 @@ const TaskTypeList = (props) => {
                                 <CardActions>
                                     <Button
                                         onClick={() => handleToggleTask(task)}
-                                        variant="contained"
-                                        color="primary"
+                                        variant='contained'
+                                        color='primary'
                                         startIcon={<CheckCircleIcon />}
                                     >
                                         {listType === LIST_TYPE.PENDING
@@ -111,8 +111,8 @@ const TaskTypeList = (props) => {
                                     {listType === LIST_TYPE.PENDING ? (
                                         <Button
                                             onClick={() => { handleEditTask(task); }}
-                                            variant="contained"
-                                            color="info"
+                                            variant='contained'
+                                            color='info'
                                             startIcon={<EditIcon />}
                                         >
                                             Edit
@@ -120,8 +120,8 @@ const TaskTypeList = (props) => {
                                     ) : ''}
                                     <Button
                                         onClick={() => deleteTask(task.id)}
-                                        variant="contained"
-                                        color="error"
+                                        variant='contained'
+                                        color='error'
                                         startIcon={<DeleteIcon />}
                                     >
                                         Delete

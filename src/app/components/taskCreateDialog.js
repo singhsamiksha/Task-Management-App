@@ -1,8 +1,7 @@
 import React, { useState, useEffect } from 'react';
-import { Button, Dialog, DialogTitle, DialogContent, Typography, MenuItem, DialogActions, useTheme, IconButton, TextField, Select } from '@mui/material';
+import { Button, Dialog, DialogTitle, DialogContent, Typography, MenuItem, DialogActions, IconButton, TextField, Select } from '@mui/material';
 import { Close as CloseIcon } from '@mui/icons-material';
 import { TASK_PRIORITY } from '../constants';
-import useTaskManager from '../hooks/tasks';
 
 const TaskCreateDialog = (props) => {
   const {
@@ -27,6 +26,7 @@ const TaskCreateDialog = (props) => {
     } else {
       setNewTask({ ...initialTask });
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [task, open]);
 
   const handleSubmit = () => {
@@ -46,9 +46,9 @@ const TaskCreateDialog = (props) => {
       maxWidth={'sm'}
     >
       <DialogTitle>
-        <Typography variant="h6">{task ? 'Update Task' : 'Add New Task'}</Typography>
+        <Typography variant='h6'>{task ? 'Update Task' : 'Add New Task'}</Typography>
         <IconButton
-          aria-label="close"
+          aria-label='close'
           onClick={closeDialog}
           sx={{
             position: 'absolute',
@@ -62,25 +62,25 @@ const TaskCreateDialog = (props) => {
       </DialogTitle>
       <DialogContent>
         {/* Task Title */}
-        <Typography variant="subtitle2">Task Title</Typography>
+        <Typography variant='subtitle2'>Task Title</Typography>
         <TextField
           fullWidth
-          margin="dense"
-          size="small"
+          margin='dense'
+          size='small'
           sx={{ marginTop: 0 }}
           value={newTask.title}
           onChange={(e) => setNewTask({ ...newTask, title: e.target.value })}
         />
 
         {/* Task Description */}
-        <Typography variant="subtitle2" sx={{ mt: 1 }}>
+        <Typography variant='subtitle2' sx={{ mt: 1 }}>
           Task Description
         </Typography>
         <TextField
           fullWidth
-          margin="dense"
+          margin='dense'
           multiline
-          size="small"
+          size='small'
           rows={4}
           sx={{ marginTop: 0 }}
           value={newTask.description}
@@ -88,7 +88,7 @@ const TaskCreateDialog = (props) => {
         />
 
         {/* Priority Select */}
-        <Typography variant="subtitle2" sx={{ mt: 1 }}>
+        <Typography variant='subtitle2' sx={{ mt: 1 }}>
           Priority
         </Typography>
         <Select
@@ -96,7 +96,7 @@ const TaskCreateDialog = (props) => {
           onChange={(e) => setNewTask({ ...newTask, priority: e.target.value })}
           fullWidth
           size='small'
-          margin="dense"
+          margin='dense'
         >
           <MenuItem value={TASK_PRIORITY.HIGH}>High</MenuItem>
           <MenuItem value={TASK_PRIORITY.MEDIUM}>Medium</MenuItem>
@@ -108,8 +108,8 @@ const TaskCreateDialog = (props) => {
         <Button
           disabled={!newTask.title || !newTask.description}
           onClick={handleSubmit}
-          variant="contained"
-          color="primary"
+          variant='contained'
+          color='primary'
         >
           {task ? 'Update Task' : 'Add Task'}
         </Button>

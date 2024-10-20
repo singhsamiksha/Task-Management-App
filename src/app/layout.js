@@ -1,4 +1,4 @@
-"use client";
+'use client';
 
 import { ThemeProvider, createTheme } from '@mui/material/styles';
 import CssBaseline from '@mui/material/CssBaseline';
@@ -16,6 +16,7 @@ const roboto = Roboto({
 export const ThemeContext = createContext();
 
 
+// eslint-disable-next-line import/no-unused-modules
 export default function RootLayout({ children }) {
 
   const [darkMode, setDarkMode] = useState(false);
@@ -95,7 +96,7 @@ export default function RootLayout({ children }) {
 
 
   return (
-    <html lang="en">
+    <html lang='en'>
       <body className={roboto.variable}>
         <ThemeContext.Provider value={{ darkMode, toggleTheme }}>
           <ThemeProvider theme={darkMode ? darkTheme : lightTheme}>

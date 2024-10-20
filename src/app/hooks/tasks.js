@@ -10,6 +10,7 @@ const useTaskManager = () => {
         if (storedTasks) {
             setTasks(storedTasks);
         }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
     const saveTasks = (updatedTasks) => {
@@ -23,7 +24,7 @@ const useTaskManager = () => {
             title,
             description,
             priority,
-            status: TASK_STATUS.PENDING, 
+            status: TASK_STATUS.PENDING,
             createdAt: moment(),
             updatedAt: moment(),
         };
@@ -47,7 +48,7 @@ const useTaskManager = () => {
                 ? { ...task, ...updatedData, updatedAt: moment() }
                 : task
         );
-        saveTasks(sortTasks(updatedTasks)); 
+        saveTasks(sortTasks(updatedTasks));
     };
 
     const deleteTask = (taskId) => {
