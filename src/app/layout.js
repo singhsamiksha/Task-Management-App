@@ -48,6 +48,9 @@ export default function RootLayout({ children }) {
           background: {
             default: '#f7f6f6',
           },
+          warning: {
+            main: '#FFEB3B',
+          },
         },
         typography: {
           fontFamily: 'var(--font-roboto)',
@@ -66,6 +69,9 @@ export default function RootLayout({ children }) {
           },
           background: {
             default: '#121212',
+          },
+          warning: {
+            main: '#FFEB3B',
           },
         },
         typography: {
@@ -97,6 +103,9 @@ export default function RootLayout({ children }) {
 
   return (
     <html lang='en'>
+      <head>
+        <title>Task Management</title>
+      </head>
       <body className={roboto.variable}>
         <ThemeContext.Provider value={{ darkMode, toggleTheme }}>
           <ThemeProvider theme={darkMode ? darkTheme : lightTheme}>

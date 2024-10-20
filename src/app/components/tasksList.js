@@ -102,6 +102,9 @@ const TaskTypeList = (props) => {
                                         onClick={() => handleToggleTask(task)}
                                         variant='contained'
                                         color='primary'
+                                        sx={{
+                                            whiteSpace: 'nowrap'
+                                        }}
                                         startIcon={<CheckCircleIcon />}
                                     >
                                         {listType === LIST_TYPE.PENDING

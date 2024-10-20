@@ -27,7 +27,14 @@ const Header = (props) => {
             width: '100%',
           }}
         >
-          <Typography variant='h6'>
+          <Typography
+            variant='h6'
+            sx={{
+              width: { xs: '100%', md: 'auto' },
+              marginTop: { xs: 1, md: 0 },
+              marginBottom: { xs: 1, md: 0 },
+            }}
+          >
             Task Management App
           </Typography>
           <TextField
@@ -35,8 +42,10 @@ const Header = (props) => {
             placeholder='Search tasks...'
             size='small'
             sx={{
-              width: '50%',
               background: theme.palette.background.default,
+              width: { xs: '100%', md: '50%' },
+              marginTop: { xs: 1, md: 0 },
+              marginBottom: { xs: 1, md: 0 },
             }}
             slotProps={{
               input: {
@@ -47,8 +56,12 @@ const Header = (props) => {
             }}
             value={searchValue}
             onChange={(e) => setSearchValue(e.target.value)}
-            />
-          <Box>
+          />
+          <Box sx={{
+            width: { xs: '100%', md: 'auto' },
+            marginTop: { xs: 1, md: 0 },
+            marginBottom: { xs: 1, md: 0 },
+          }}>
             <IconButton onClick={toggleTheme} color='inherit' sx={{ mr: 2 }}>
               {darkMode ? <DarkModeIcon /> : <LightModeIcon />}
             </IconButton>
