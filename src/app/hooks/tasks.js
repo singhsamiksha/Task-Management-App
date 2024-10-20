@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { TASK_STATUS } from '../constants';
+import { PRIORITY_ORDER, TASK_STATUS } from '../constants';
 import moment from 'moment';
 
 const useTaskManager = () => {
@@ -10,7 +10,7 @@ const useTaskManager = () => {
         if (storedTasks) {
             setTasks(storedTasks);
         }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
     const saveTasks = (updatedTasks) => {
@@ -39,7 +39,16 @@ const useTaskManager = () => {
     };
 
     const sortTasks = (tasks) => {
-        return tasks.sort((a, b) => new moment(b.createdAt) - new moment(a.createdAt));
+        return tasks.sort((a, b) => {
+            const priorityA = PRIORITY_ORDER[a.priority] || 0;
+            const priorityB = PRIORITY_ORDER[b.priority] || 0;
+
+            if (priorityA !== priorityB) {
+                return priorityB - priorityA;
+            }
+
+            return new moment(b.createdAt) - new moment(a.createdAt);
+        });
     };
 
     const updateTask = (taskId, updatedData) => {

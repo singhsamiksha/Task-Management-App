@@ -5,7 +5,13 @@ export const TASK_STATUS = {
 };
 
 export const TASK_PRIORITY = {
-  HIGH: 'high',
-  MEDIUM: 'medium',
-  LOW: 'low',
+  HIGH: 'HIGH',
+  MEDIUM: 'MEDIUM',
+  LOW: 'LOW',
+};
+
+export const PRIORITY_ORDER = {
+  HIGH: 3,
+  MEDIUM: 2,
+  LOW: 1,
 };
